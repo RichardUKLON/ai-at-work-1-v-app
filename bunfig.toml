@@ -1,0 +1,3 @@
+[install]
+# Trust all dependencies — this is a personal Zo site
+trust.all = true
