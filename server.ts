@@ -27,7 +27,7 @@ export default { fetch: app.fetch, port, idleTimeout: 255 };
 function configureProduction(app: Hono) {
   app.use("/assets/*", serveStatic({ root: "./dist" }));
   app.use(async (c, next) => {
-    if (c.req.method !== "GET") return next();
+    if (c.req.method !== "GET" && c.req.method !== "HEAD") return next();
     const path = c.req.path;
     if (path.startsWith("/assets/")) return next();
 
