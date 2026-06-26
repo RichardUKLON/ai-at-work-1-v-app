@@ -1,6 +1,6 @@
 {
   "name": "ai-at-work-v-app",
-  "local_port": 51994,
+  "local_port": 51995,
   "entrypoint": "bun run dev",
   "publish": {
     "label": "ai-at-work-v-app",
