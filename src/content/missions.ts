@@ -138,8 +138,8 @@ export const missions: Mission[] = [
         id: "m1s3b",
         kind: "video",
         label: "Video Break",
-        videoSrc: "assets/videos/m2-post-hallucination.mp4",
-        posterSrc: "assets/videos/m1-opening-poster.jpg",
+        videoSrc: "assets/videos/m1-post-hallucination.mp4?v=2",
+        posterSrc: "assets/videos/m1-post-hallucination-poster.jpg",
       },
       {
         id: "m1s4",
@@ -232,6 +232,13 @@ export const missions: Mission[] = [
         ],
       },
       {
+        id: "m2s0b",
+        kind: "video",
+        label: "Pattern Primer",
+        videoSrc: "assets/videos/m2-pattern-primer.mp4",
+        posterSrc: "assets/videos/m2-pattern-primer-poster.jpg",
+      },
+      {
         id: "m2s1",
         kind: "spotTheRisk",
         label: "Decision 1 of 4 — Spot the Risk",
@@ -319,6 +326,13 @@ export const missions: Mission[] = [
               "Ava replies, politely and confidently, that it is. Asking a model to verify itself is not verification — it generates a plausible answer about its own plausible answer. Check independently.",
           },
         ],
+      },
+      {
+        id: "m2s2b",
+        kind: "video",
+        label: "Credibility Break",
+        videoSrc: "assets/videos/m2-credibility-break.mp4",
+        posterSrc: "assets/videos/m2-credibility-break-poster.jpg",
       },
       {
         id: "m2s3",
@@ -482,6 +496,13 @@ export const missions: Mission[] = [
         ],
       },
       {
+        id: "m3s1b",
+        kind: "video",
+        label: "Briefing Mindset",
+        videoSrc: "assets/videos/m3-briefing-mindset.mp4",
+        posterSrc: "assets/videos/m3-briefing-mindset-poster.jpg",
+      },
+      {
         id: "m3s2",
         kind: "promptBuilder",
         label: "Decision 2 of 4 — Build the brief",
@@ -642,6 +663,13 @@ export const missions: Mission[] = [
         ],
       },
       {
+        id: "m3s3b",
+        kind: "video",
+        label: "Drafts Are Not Decisions",
+        videoSrc: "assets/videos/m3-drafts-not-decisions.mp4",
+        posterSrc: "assets/videos/m3-drafts-not-decisions-poster.jpg",
+      },
+      {
         id: "m3s4",
         kind: "decision",
         label: "Decision 4 of 4 — Iterate",
@@ -730,6 +758,13 @@ export const missions: Mission[] = [
               "Style instructions do not prevent guessing — they just dress it better.",
           },
         ],
+      },
+      {
+        id: "m4s0b",
+        kind: "video",
+        label: "The Point of No Return",
+        videoSrc: "assets/videos/m4-point-of-no-return.mp4",
+        posterSrc: "assets/videos/m4-point-of-no-return-poster.jpg",
       },
       {
         id: "m4s1",
@@ -839,6 +874,13 @@ export const missions: Mission[] = [
           },
         ],
         wrap: "The pattern: it is never the task that is risky — summarising, drafting and translating are all fine. It is the data that goes in, and whether a human reviews what comes out.",
+      },
+      {
+        id: "m4s2b",
+        kind: "video",
+        label: "The Boundary Test",
+        videoSrc: "assets/videos/m4-boundary-test.mp4",
+        posterSrc: "assets/videos/m4-boundary-test-poster.jpg",
       },
       {
         id: "m4s3",
@@ -996,6 +1038,13 @@ export const missions: Mission[] = [
         ],
       },
       {
+        id: "m5s0b",
+        kind: "video",
+        label: "Fast Decisions",
+        videoSrc: "assets/videos/m5-fast-decisions.mp4",
+        posterSrc: "assets/videos/m5-fast-decisions-poster.jpg",
+      },
+      {
         id: "m5s1",
         kind: "decision",
         label: "Decision 1 of 4 — The instant shortlist",
@@ -1060,6 +1109,13 @@ export const missions: Mission[] = [
               "Re-running may shuffle the order, but it samples from the same learned patterns. You cannot average your way out of a biased mirror.",
           },
         ],
+      },
+      {
+        id: "m5s2b",
+        kind: "video",
+        label: "Ownership",
+        videoSrc: "assets/videos/m5-ownership.mp4",
+        posterSrc: "assets/videos/m5-ownership-poster.jpg",
       },
       {
         id: "m5s3",

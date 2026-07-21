@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
+import { ArrowLeft, Play } from "lucide-react";
 import { useGame } from "../store";
 import { selectFinaleItems } from "../lib/finaleSelect";
 import { finaleBrief } from "../content/finale";
@@ -22,15 +22,26 @@ export function FinalePlayer() {
   const recordFinale = useGame((s) => s.recordFinale);
 
   const items = useMemo(() => selectFinaleItems(seed, 10), [seed]);
-  const [phase, setPhase] = useState<"brief" | "play">("brief");
+  const [phase, setPhase] = useState<"openingVideo" | "brief" | "play">("openingVideo");
   const [index, setIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
+  const [midVideoDone, setMidVideoDone] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [video1Ended, setVideo1Ended] = useState(false);
+  const [video2Ended, setVideo2Ended] = useState(false);
 
   const item = items[index];
 
   function next(wasCorrect: boolean) {
     const newCorrect = correctCount + (wasCorrect ? 1 : 0);
     const nextIndex = index + 1;
+    if (nextIndex === 5 && !midVideoDone) {
+      // Insert Video 2 halfway through
+      setCorrectCount(newCorrect);
+      setMidVideoDone(true);
+      setVideo2Ended(false);
+      return;
+    }
     if (nextIndex < items.length) {
       setCorrectCount(newCorrect);
       setIndex(nextIndex);
@@ -56,6 +67,49 @@ export function FinalePlayer() {
         <span aria-hidden>·</span>
         <span className="font-medium text-ink/70">The Friday Review</span>
       </div>
+
+      {phase === "openingVideo" && (
+        <div className="space-y-5">
+          <div className="flex items-center gap-2 text-brand">
+            <span className="text-sm font-semibold uppercase tracking-wide">
+              The Friday Review · The Calibration Mindset
+            </span>
+          </div>
+          <div className="relative aspect-video w-full overflow-hidden rounded-xl2 border border-hairline bg-ink/5 shadow-card">
+            {!video1Ended ? (
+              <>
+                <video
+                  ref={videoRef}
+                  src="assets/videos/m6-calibration-mindset.mp4"
+                  poster="assets/videos/m6-calibration-mindset-poster.jpg"
+                  className="h-full w-full object-contain"
+                  onEnded={() => setVideo1Ended(true)}
+                  controls
+                />
+                <button
+                  type="button"
+                  onClick={() => setVideo1Ended(true)}
+                  className="absolute right-3 top-3 rounded-lg bg-ink/70 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur hover:bg-ink"
+                >
+                  Skip video
+                </button>
+              </>
+            ) : (
+              <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center">
+                <Play size={48} className="text-ink/20" />
+                <p className="text-sm text-ink/50">Video complete</p>
+                <button
+                  type="button"
+                  onClick={() => setPhase("brief")}
+                  className="rounded-lg bg-brand px-5 py-2.5 font-semibold text-white hover:bg-brand-dark"
+                >
+                  Continue to the review
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {phase === "brief" ? (
         <div className="space-y-5">
@@ -99,7 +153,46 @@ export function FinalePlayer() {
             </div>
           </div>
 
-          <FinaleItemView key={item.id} item={item} onDone={next} />
+          {midVideoDone && !video2Ended ? (
+            <div className="space-y-5">
+              <div className="flex items-center gap-2 text-brand">
+                <span className="text-sm font-semibold uppercase tracking-wide">
+                  The Middle Ground
+                </span>
+              </div>
+              <div className="relative aspect-video w-full overflow-hidden rounded-xl2 border border-hairline bg-ink/5 shadow-card">
+                <video
+                  src="assets/videos/m6-middle-ground.mp4"
+                  poster="assets/videos/m6-middle-ground-poster.jpg"
+                  className="h-full w-full object-contain"
+                  onEnded={() => setVideo2Ended(true)}
+                  controls
+                />
+                <button
+                  type="button"
+                  onClick={() => setVideo2Ended(true)}
+                  className="absolute right-3 top-3 rounded-lg bg-ink/70 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur hover:bg-ink"
+                >
+                  Skip video
+                </button>
+              </div>
+              {video2Ended && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIndex(5);
+                    document.getElementById("main")?.focus();
+                    window.scrollTo({ top: 0 });
+                  }}
+                  className="rounded-lg bg-brand px-5 py-2.5 font-semibold text-white hover:bg-brand-dark"
+                >
+                  Continue
+                </button>
+              )}
+            </div>
+          ) : (
+            <FinaleItemView key={item.id} item={item} onDone={next} />
+          )}
         </div>
       )}
     </div>
