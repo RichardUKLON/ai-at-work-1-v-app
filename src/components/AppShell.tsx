@@ -74,6 +74,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 type="button"
                 onClick={() => navigate({ screen: "map" })}
                 aria-label="Mission map"
+                data-tour="mission-map"
                 className="rounded-md p-2 text-ink/70 hover:bg-surface hover:text-brand"
               >
                 <Map size={20} aria-hidden />
@@ -83,6 +84,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 onClick={() => openGlossary()}
                 aria-haspopup="dialog"
                 aria-label="Open glossary"
+                data-tour="glossary"
                 className="rounded-md p-2 text-ink/70 hover:bg-surface hover:text-brand"
               >
                 <BookOpen size={20} aria-hidden />
@@ -91,6 +93,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 type="button"
                 onClick={() => navigate({ screen: "progress" })}
                 aria-label="My progress"
+                data-tour="my-progress"
                 className="rounded-md p-2 text-ink/70 hover:bg-surface hover:text-brand"
               >
                 <BarChart3 size={20} aria-hidden />
@@ -99,6 +102,7 @@ export function AppShell({ children }: { children: ReactNode }) {
                 type="button"
                 onClick={() => navigate({ screen: "about" })}
                 aria-label="About and help"
+                data-tour="about"
                 className="rounded-md p-2 text-ink/70 hover:bg-surface hover:text-brand"
               >
                 <Info size={20} aria-hidden />

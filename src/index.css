@@ -85,3 +85,45 @@ body {
 .glossary-term:hover {
   color: #0f6e66;
 }
+
+.warmup-tutorial {
+  max-height: calc(100dvh - 1rem);
+}
+
+.warmup-tour-target {
+  position: relative;
+  z-index: 51;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0 4px #faf8f5, 0 0 0 7px #0f6e66;
+}
+
+.warmup-tour-header {
+  z-index: 51 !important;
+}
+
+@media (min-width: 768px) {
+  .warmup-tutorial {
+    bottom: auto;
+    right: auto;
+  }
+
+  .warmup-tutorial::before {
+    position: absolute;
+    left: 1.35rem;
+    width: 0;
+    height: 0;
+    content: "";
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+
+  .warmup-tutorial--bottom::before {
+    top: -10px;
+    border-bottom: 10px solid #faf8f5;
+  }
+
+  .warmup-tutorial--top::before {
+    bottom: -10px;
+    border-top: 10px solid #faf8f5;
+  }
+}

@@ -7,6 +7,7 @@ import type { StepResult } from "../components/steps/stepTypes";
 import { trustZone } from "../lib/game";
 import { RichText } from "../components/RichText";
 import { getIcon } from "../lib/icons";
+import { WarmupTutorial } from "../components/WarmupTutorial";
 
 import { DecisionStep } from "../components/steps/DecisionStep";
 import { RecallCard } from "../components/steps/RecallCard";
@@ -191,8 +192,9 @@ export function MissionPlayer({ missionId }: { missionId: string }) {
 
       {phase === "steps" && step && (
         <div className="space-y-5">
+          <WarmupTutorial active={missionId === "m1" && stepIndex === 0} />
           {/* Progress bar */}
-          <div>
+          <div data-tour="progress">
             <div className="mb-1 flex items-center justify-between text-xs text-ink/60">
               <span>{step.label}</span>
               <span>

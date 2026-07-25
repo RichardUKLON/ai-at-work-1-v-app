@@ -61,8 +61,8 @@ export function DecisionStep({
 
       {!chosen && (
         <ul className="space-y-3" role="list">
-          {step.options.map((o) => (
-            <li key={o.id}>
+          {step.options.map((o, index) => (
+            <li key={o.id} data-tour={index === 0 ? "choice-example" : undefined}>
               <button
                 type="button"
                 onClick={() => choose(o.id)}
